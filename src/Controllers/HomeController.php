@@ -9,7 +9,5 @@
             $data=['name'=>'CEFPNuria'];
             echo view('home',$data);
         }
-        function teachers(){
-            echo 'teachers';
-        }
+
     }

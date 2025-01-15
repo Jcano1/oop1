@@ -7,53 +7,57 @@
 
         private string $email;
         private string $username;
+        private string $last_name;
+        private string $usertipe;
         private string $password;
-        private string $dni;
         private ?\DateTime $createdAt=null;
         private ?\DateTime $updatedAt=null;
 
 
-        function __construct($username,$email,$password,$dni){
+        function __construct($username,$email,$password,$last_name,$usertipe){
             $this->email=$email;
             $this->username=$username;
-            $this->password=$password;
-            $this->dni=$dni;
-
+            $this->password=password_hash($password,2);
+            $this->last_name=$last_name;
+            $this->usertipe=$usertipe;
 
         }
 
         function setEmail(string $email){
             $this->email=$email;
-            return $this;
         }
 
         function getEmail(){
             return $this->email;
         }
 
-        
-
-        /**
-         * Get the value of username
-         */ 
         public function getUsername()
         {
                 return $this->username;
         }
 
-        /**
-         * Get the value of password
-         */ 
         public function getPassword()
         {
                 return $this->password;
         }
-
-        /**
-         * Get the value of dni
-         */ 
-        public function getDni()
+        public function getUsertipe()
         {
-                return $this->dni;
+                return $this->usertipe;
+        }
+        public function setUsertipe($usertipe)
+        {
+                $this->usertipe = $usertipe;
+
+                return $this;
+        }
+        public function getLast_name()
+        {
+                return $this->last_name;
+        }
+        public function setLast_name($last_name)
+        {
+                $this->last_name = $last_name;
+
+                return $this;
         }
     }

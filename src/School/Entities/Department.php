@@ -9,4 +9,7 @@
         {
             $this->name=$name;
         }
+        function Getname(){
+            return $this->name;
+        }
     }

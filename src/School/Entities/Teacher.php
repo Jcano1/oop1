@@ -5,15 +5,13 @@
     use App\School\Trait\Timestampable;
     use App\School\Entities\User;
     use App\School\Entities\Department;
-
-
     class Teacher extends User{
         use Timestampable;
 
         protected $department;
 
-        function __construct($email,$name){
-            parent::__construct($email,$name);
+        function __construct($name,$email,$password,$last_name,$usertipe){
+            parent::__construct($name,$email,$password,$last_name,$usertipe);
             $this->updateTimestamps();
         }
 

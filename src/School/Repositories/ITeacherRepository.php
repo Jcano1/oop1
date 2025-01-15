@@ -6,6 +6,6 @@
 
     interface ITeacherRepository{
         public function save(Teacher $teacher);
-        public function findById($id);
+        public function findBydni($dni);
         
     }
