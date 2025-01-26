@@ -19,7 +19,7 @@
                 'last_name'=>$teacher->getLast_name(),
                 'email'=>$teacher->getEmail(),
                 'password'=>$teacher->getPassword(),
-                'user_type'=>"teacher",
+                'user_type'=>$teacher->getUsertipe(),
                 'uuid'=>rand(0,1000)
             ]);
             $id=$this->db->lastInsertId();
@@ -45,6 +45,5 @@
                 'idDepartment'=>$idDepartment,
                 'idTeacher'=>$idTeacher
             ]);
-            var_dump('prueba');
         }
     }

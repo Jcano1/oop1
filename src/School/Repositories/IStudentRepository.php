@@ -6,5 +6,6 @@
     
     interface IStudentRepository{
         public function save(Student $student);
+        public function GetAllStudents();
         
     }

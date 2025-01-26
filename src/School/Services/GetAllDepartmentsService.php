@@ -5,7 +5,7 @@
     use App\School\Entities\Department;
     use App\Infrastructure\Persistence\DepartmentRepository;
 
-    class DepartmentService{
+    class GetAllDepartmentsService{
         private DepartmentRepository $DepartmentRepository;
         private DatabaseConnection $bd;
         function GetAllDepartments(){

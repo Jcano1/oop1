@@ -20,7 +20,8 @@
 </head>
 <body>
     <h1>Teachers <?=$name;?></h1>
-    <a href="/CreateTeacher">Registrar nuevo profesor</a>
+    <a href="/CreateTeacher">Registrar nuevo profesor</a><br><br>
+    <a href="/home">Home</a>
     <?php
     $respuesta='<table>';
     for($i=0;$i<count($infoTeacher);$i++){

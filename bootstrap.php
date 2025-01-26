@@ -7,11 +7,16 @@ use App\Controllers\StudentController;
     $dotenv->load();
 
     use App\Controllers\HomeController;
-    use App\Controllers\TeacherController;
+    use App\Controllers\CreateTeacherViewController;
+    use App\Controllers\updateTeacherDepartmentController;
+    use App\Controllers\teachersViewController;
+    use App\Controllers\studentViewController;
+    use App\Controllers\CreateStudentViewController;
+    use App\Controllers\createStudentController;
+
+    use App\Controllers\createTeacherController;
     use App\Infrastructure\Database\DatabaseConnection;
     use App\Infrastructure\Routing\Router;
-    use App\School\Services\EnrollmentService;
-    use App\Infrastructure\Persistence\EnrollmentRepository;
     
     use App\School\Services\Services;
     
@@ -26,10 +31,10 @@ use App\Controllers\StudentController;
     $router=new Router();
     $router->addRoute('GET','/',[new HomeController(),'index'])
             ->addRoute('GET','/home',[new HomeController(),'index'])
-            ->addRoute('GET','/teachers',[new TeacherController(),'teachers'])
-            ->addRoute('GET','/CreateTeacher',[new TeacherController(),'CreateTeacherview'])
-            ->addRoute('POST','/createNewTeacher',[new TeacherController(),'CreateTeacher'])
-            ->addRoute('GET','/UpdateDepartment',[new TeacherController(),'UpdateTeacherDepartment'])
-            ->addRoute('GET','/Student',[new StudentController(),'Student'])
-            ->addRoute('GET','/CreateStudent',[new StudentController(),'CreateStudentView'])
-            ->addRoute('POST','/CreateNewStudent',[new StudentController(),'CreateNewStudent']);
+            ->addRoute('GET','/teachers',[new teachersViewController(),'teachers'])
+            ->addRoute('GET','/CreateTeacher',[new CreateTeacherViewController(),'CreateTeacherview'])
+            ->addRoute('POST','/createNewTeacher',[new createTeacherController(),'CreateTeacher'])
+           ->addRoute('GET','/UpdateDepartment',[new updateTeacherDepartmentController(),'UpdateTeacherDepartment'])
+            ->addRoute('GET','/Student',[new studentViewController(),'students'])
+            ->addRoute('GET','/CreateStudent',[new CreateStudentViewController(),'CreateStudentView'])
+            ->addRoute('POST','/createNewStudent',[new createStudentController(),'CreateStudent']);
