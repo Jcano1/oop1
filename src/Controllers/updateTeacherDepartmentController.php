@@ -2,7 +2,6 @@
    namespace App\Controllers;
 
    use App\School\Services\UpdateTeacherDepartmentService;
-   use App\Controllers\teachersViewController;
 
     class updateTeacherDepartmentController {
 
@@ -25,7 +24,7 @@
             $idteacher=$resultado['teacherId'];
             $idDepartment=$resultado['DepartamentosId'];
             $this->UpdateTeacherDepartmentService->UpdateTeacherDepartment($idteacher,$idDepartment);
-            $this->vistas->teachers();
+            header('Location: teachers');
         }
     }
 ?>

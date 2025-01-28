@@ -3,18 +3,20 @@
 
    use App\Infrastructure\Database\DatabaseConnection;
    use App\Infrastructure\Persistence\TeacherRepository;
+   use App\School\Repositories\ITeacherRepository;
    use App\School\Entities\Teacher;
 
 class createTeacherService{
     private Teacher $teacher;
-    private TeacherRepository $teacherRepository;
+    private ITeacherRepository $teacherRepository;
     private DatabaseConnection $bd;
-
-    function SaveTeacher(array $DatosTeacher){
+    function __construct(){
         $this->bd=new DatabaseConnection();
         $bd=$this->bd->getConnection();
-        $this->teacher=new Teacher($DatosTeacher['nombre'],$DatosTeacher['email'],$DatosTeacher['password'],$DatosTeacher['last_name'],"teacher");
         $this->teacherRepository=new TeacherRepository($bd);
+    }
+    function SaveTeacher(array $DatosTeacher){
+        $this->teacher=new Teacher($DatosTeacher['nombre'],$DatosTeacher['email'],$DatosTeacher['password'],$DatosTeacher['last_name'],"teacher");
         $this->teacherRepository->save($this->teacher);
     }
 }

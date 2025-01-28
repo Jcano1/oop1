@@ -3,6 +3,8 @@
 
     use App\Controllers\teachersViewController;
     use App\School\Services\createTeacherService;
+    use App\Infrastructure\Persistence\StudentRepository;
+    
 
 class createTeacherController{
 
@@ -18,7 +20,8 @@ class createTeacherController{
     function CreateTeacher(){
         $this->vistas= new teachersViewController;
         $this->teacherService= new createTeacherService();
+
         $this->teacherService->SaveTeacher($this->parsePOST());
-        $this->vistas->teachers();
+        header('Location: teachers');
     }
 }

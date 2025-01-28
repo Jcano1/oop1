@@ -1,12 +1,12 @@
 <?php
     namespace App\Controllers;
 
-    use App\Controllers\studentViewController;
+
     use App\School\Services\createStudentService;
-    var_dump('prueba');
+
 class createStudentController{
  
-    private studentViewController $vistas;
+
     private createStudentService $studentService;
 
     private function parsePOST(){
@@ -18,9 +18,8 @@ class createStudentController{
 
     function CreateStudent(){
         
-        $this->vistas= new studentViewController;
         $this->studentService= new createStudentService();
         $this->studentService->SaveStudent($this->parsePOST());
-        $this->vistas->Students();
+        header('Location: Student');
     }
 }

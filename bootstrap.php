@@ -13,8 +13,11 @@ use App\Controllers\StudentController;
     use App\Controllers\studentViewController;
     use App\Controllers\CreateStudentViewController;
     use App\Controllers\createStudentController;
+    use App\Controllers\AsignStudentCoursesController;
 
     use App\Controllers\createTeacherController;
+
+
     use App\Infrastructure\Database\DatabaseConnection;
     use App\Infrastructure\Routing\Router;
     
@@ -34,7 +37,8 @@ use App\Controllers\StudentController;
             ->addRoute('GET','/teachers',[new teachersViewController(),'teachers'])
             ->addRoute('GET','/CreateTeacher',[new CreateTeacherViewController(),'CreateTeacherview'])
             ->addRoute('POST','/createNewTeacher',[new createTeacherController(),'CreateTeacher'])
-           ->addRoute('GET','/UpdateDepartment',[new updateTeacherDepartmentController(),'UpdateTeacherDepartment'])
+            ->addRoute('GET','/UpdateDepartment',[new updateTeacherDepartmentController(),'UpdateTeacherDepartment'])
             ->addRoute('GET','/Student',[new studentViewController(),'students'])
             ->addRoute('GET','/CreateStudent',[new CreateStudentViewController(),'CreateStudentView'])
-            ->addRoute('POST','/createNewStudent',[new createStudentController(),'CreateStudent']);
+            ->addRoute('POST','/createNewStudent',[new createStudentController(),'CreateStudent'])
+            ->addRoute('GET','/UpdateCourses',[new AsignStudentCoursesController(),'AsignStudentCourse']);

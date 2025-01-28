@@ -33,9 +33,58 @@
         public function GetAllStudents(){
             $stmt=$this->db->prepare('SELECT u.first_name, u.last_name, u.id, u.email, t.dni, t.id, t.enrollment_year as idStudent  FROM users u JOIN students t ON u.id = t.user_id WHERE u.user_type = "Student";');
             $stmt->execute();
-            return $stmt->fetchAll();
+            $resultadoStudents=$stmt->fetchAll();
+            for($i=0;$i<count($resultadoStudents);$i++){
+                $id=$resultadoStudents[$i]['id'];
+                $stmt=$this->db->prepare('SELECT 
+                    enrollments.id,
+                    enrollments.student_id,
+                    students.dni,
+                    enrollments.subject_id,
+                    subjects.name AS subject_name,
+                    enrollments.enrollment_date
+                FROM 
+                    enrollments
+                JOIN 
+                    students ON enrollments.student_id = students.id
+                JOIN 
+                    subjects ON enrollments.subject_id = subjects.id
+                WHERE 
+                    enrollments.student_id = :id
+                LIMIT 1;');
+                $stmt->execute([
+                    'id'=>$id
+                ]);
+                $resultado=$stmt->fetchAll();
+                if(count($resultado)==0){
+                    $resultadoStudents[$i]['courseid']=0;
+                }else{
+                    $idsubject=$resultado[0]['subject_id'];
+                    $stmt=$this->db->prepare('SELECT 
+                        courses.id
+                    FROM 
+                        courses
+                    JOIN 
+                        subjects ON courses.id = subjects.course_id
+                    WHERE 
+                        subjects.id = :id;
+                    ');
+
+                    $stmt->execute([
+                        'id'=>$idsubject
+                    ]);
+                    $resultado=$stmt->fetchAll();
+                    $resultadoStudents[$i]['courseid']=$resultado[0]['id'];
+                }
+
+                
+            }
+            return $resultadoStudents;
         }
 
+        public function mihuevios(){
+            print 'hola';
+        }
 
     }
 
